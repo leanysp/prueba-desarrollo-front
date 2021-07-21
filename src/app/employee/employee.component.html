@@ -1,0 +1,67 @@
+<div class="container">
+    <div class="card border-primary mb-3">
+        <div class="card-header">Crear empleado</div>
+        <div class="card-body text-primary">
+
+            <form (ngSubmit)="save()">
+                <div class="mb-3 row">
+                    <label class="col-sm-2 col-form-label">Nombre empleado:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" [(ngModel)]="employee.fullname" name="nombre" required>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label class="col-sm-2 col-form-label">Identificación:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" [(ngModel)]="employee.identification" name="identificacion">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label class="col-sm-2 col-form-label">Cargo:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" [(ngModel)]="employee.function" name="cargo">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label class="col-sm-2 col-form-label">Jefe:</label>
+                    <div class="col-sm-10">
+                    <select class="form-select" aria-label="Default select example" [(ngModel)]="employee.boss" name="boss">
+                        <option selected>Seleccione una opción</option>
+                        <option *ngFor="let employee of employees" [ngValue]="employee">{{employee.fullname}}</option>
+                      </select>
+                    </div>
+                </div>
+                <button type="submit"  class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+
+
+    <div class="card border-primary mb-3">
+        <div class="card-header">Empleados</div>
+        <div class="card-body text-primary">
+            <h5 class="card-title">Listado de empleados</h5>
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>nombre</th>
+                        <th>identificacion</th>
+                        <th>cargo</th>
+                        <th>jefe</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor= "let employee of employees">
+                        <td>{{employee.id}}</td>
+                        <td>{{employee.fullname}}</td>
+                        <td>{{employee.identification}}</td>
+                        <td>{{employee.function}}</td>
+                        <td>{{employee.boss  != null ? employee.boss.fullname : '-' }}</td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
